@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >用户注册</title>
+    <style>
+        body {
+            text-align: center;   /* 让整个页面内容居中 */
+        }
+        main {
+            display: inline-block; /* 让main宽度自适应内容并居中 */
+            text-align: left;      /* 表单内容左对齐，更美观 */
+            padding: 20px;
+        }
+        p {
+            margin: 10px 0;
+            text-align: center;
+        }
+       
+/* 弹窗背景 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+.modal.active {
+    display: flex;
+}
+/* 弹窗内容 */
+.modal-content {
+    background: #fff;
+    padding: 20px 30px;
+    width: 400px;
+    border-radius: 6px;
+    position: relative;
+}
+.modal-content h3 {
+    margin-top: 0;
+}
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+    </style>
+</head>
+<body>
+    <nav style="background: #333; color:#fff ; padding: 10px;">
+    <a onclick="openModal('notice')">注册注意事项</a >&nbsp;|&nbsp;
+    <a onclick="openModal('steps')">注册步骤</a >&nbsp;|&nbsp;
+    <a onclick="openModal('faq')">常见问题</a >
+</nav>
+    <main>
+        <form>
+
+        <table align="center">
+            <h1 align="center">用户注册信息录入</h1>
+            <tr><th>用户名</th><th><input type="text" name="username" required placeholder="不能为空！"></th></tr>
+            <tr><th>密码</th><th><input type="password"name="password" placeholder="6-16位字符"></th></tr>
+            <tr><th>确认密码</th><th><input type="password" name="confirmPassword"placeholder="需与设置密码一致"></th></tr>
+            <tr><th>性别</th><th><input type="radio" name="gender" id="male" checked="checked"><label for="male">男</label>
+            <input type="radio" name="gender" id="female"><label for="female">女</label></th></tr>
+            <tr><th>出生日期📅</th><th><input type="date" name="birthday"></th></tr>
+            <tr><th>邮箱📮</th><th><input type="email" name="email" required></th></tr>
+            <tr><th>手机号📱</th><th><input type="tel" name="phone" pattern="[0-9]{11}"></th></tr>
+        </table>
+
+        <p>兴趣爱好:
+        <input type="checkbox" name="hobby" checked>唱歌🎤
+        <input type="checkbox"name="hobby">游泳🏊‍♀️
+        <input type="checkbox"name="hobby">打游戏🎮
+        <input type="checkbox"name="hobby">画画🎨
+        <br><input type="checkbox"name="hobby">跑步🏃‍♀️
+        <input type="checkbox" name="hobby">跳舞💃
+        <input type="checkbox" name="hobby">读书📚
+        <input type="checkbox" name="hobby">摄影📹</p>
+
+        <p>头像上传👤:<input type="file" multiple></p>
+        <p>所在城市🏙️:<select name="city">
+            <option>长沙</option>
+            <option>上海</option>
+            <option>永州</option>
+            <option selected>常德</option>
+            <option>湘潭</option></select></p>
+        <p>个人简介:<br><textarea name="bio" style="width: 300px;height: 100px;">请在这里输入个人简介</textarea></br></p>
+        <p><button type="submit" style="font-size: large;margin-right: 180px;" >注册</button><button type="reset" style="font-size: large;">重置</button></p>
+        <h3 align="center" style="color: gray;">注册须知</h3>
+        <table  border="1" cellpadding="8" cellspacing="0" width="92%" align="center" style="color: gray;">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>说明事项</th>
+            <th>是否必填</th></tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>用户名、密码为必填项</td>
+            <td>是</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>邮箱用于找回密码</td>
+            <td>是</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>头像上传支持 jpg/png 格式</td>
+            <td>否</td>
+        </tr>
+        <tr>
+            <td colspan="3" style="text-align:center; background:#f5f5f5;">
+            <input type="checkbox" name="submit" checked disabled>提交即代表同意《用户服务协议》
+            </td>
+        </tr>
+        </tbody>
+        </table>
+        
+    </form>
+    </main>
+    <div class="modal" id="notice">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('notice')">&times;</span>
+        <h3>注册注意事项</h3>
+        <ul>
+            <li>请使用真实姓名注册</li>
+            <li>密码长度不少于8位，包含字母和数字</li>
+            <li>手机号需为中国大陆有效号码</li>
+            <li>注册后请尽快完善个人资料</li>
+        </ul>
+    </div>
+</div>
+
+<div class="modal" id="steps">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('steps')">&times;</span>
+        <h3>注册步骤</h3>
+        <ol>
+            <li>填写基本信息</li>
+            <li>阅读并同意用户协议</li>
+            <li>点击“立即注册”</li>
+            <li>查收邮箱验证码</li>
+            <li>注册成功</li>
+        </ol>
+    </div>
+</div>
+
+<div class="modal" id="faq">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal('faq')">&times;</span>
+        <h3>常见问题</h3>
+            <dl>
+                <dt>Q：为什么注册失败？</dt>
+                <dd>A：可能是手机号已被注册或验证码错误，请检查后重试。</dd>
+
+                <dt>Q：密码忘记怎么办？</dt>
+                <dd>A：可在登录页点击“忘记密码”，通过手机或邮箱重置。</dd>
+
+                <dt>Q：注册后多久可以登录？</dt>
+                <dd>A：注册成功后立即生效，无需等待。</dd>
+            </dl>
+    </div>
+</div>
+
+<script>
+function openModal(id) {
+    document.getElementById(id).classList.add('active');
+}
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+}
+// 点击背景关闭
+document.querySelectorAll('.modal').forEach(m => {
+    m.addEventListener('click', e => {
+        if (e.target === m) closeModal(m.id);
+    });
+});
+</script>
+    <footer>
+         <p>© 2026 某某公司</p >
+    <nav>
+    <a href="https://www.bilibili.com/" target="_blank">关于我们</a > |
+    <a href="https://www.bilibili.com/protocal/licence.html" target="_blank">联系我们</a > |
+    <a href="https://www.bilibili.com/blackboard/privacy-pc.html" target="_blank">隐私政策</a >
+    </nav>
+    </footer>
+</body>
+</html>
